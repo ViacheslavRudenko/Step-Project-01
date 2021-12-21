@@ -590,3 +590,6 @@ footer p {
   display: none;
   text-align: center;
 }
+.spiner {
+  height: 65px;
+}
