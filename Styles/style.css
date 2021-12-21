@@ -184,13 +184,11 @@ span {
   position: relative;
 }
 .active-service-title::after {
-  content: "text";
-  background: url(../img/services/xs.png) no-repeat;
+  content: url(../img/services/xs.png);
   position: absolute;
-  bottom: -38px;
+  bottom: -27px;
   right: 43%;
   left: 43%;
-  color: transparent;
 }
 .company-services-content {
   padding-bottom: 91px;
