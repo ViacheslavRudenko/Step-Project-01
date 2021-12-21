@@ -403,16 +403,25 @@ span {
 }
 .people-comm {
   width: 1160px;
+  position: relative;
+  height: 400px;
   margin: 0 auto;
-  display: none;
+  overflow: hidden;
 }
-.people-comm:first-of-type {
-  display: block;
+.people-comm > div {
+  position: absolute;
+  bottom: 0;
+}
+.people-comm div img {
+  border: 15px solid #104b4b;
+  border-radius: 50%;
+  width: 143px;
 }
 .user-comments p {
   padding-top: 36px;
   line-height: 30px;
   color: #bbbbbb;
+  width: 1160px;
 }
 .user-comments p:last-of-type {
   padding-top: 0;
@@ -424,20 +433,7 @@ span {
   color: #18cfab;
   padding-top: 36px;
 }
-.users-who-commit {
-  position: relative;
-  height: 143px;
-  overflow: hidden;
-  width: 143px;
-  margin: 0 auto;
-  border: 15px solid #104b4b;
-  border-radius: 50%;
-}
-.users-who-commit img {
-  position: absolute;
-  left: 0;
-  width: 100%;
-}
+
 .user-who-commit-all {
   padding: 57px 0 104px;
   display: flex;
@@ -446,12 +442,19 @@ span {
   width: 455px;
   align-items: center;
 }
+.user-who-commit-all-img {
+  display: flex;
+}
+
 .user-who-commit-all-item {
-  border: 7px solid #104b4b;
-  border-radius: 50%;
   width: fit-content;
   box-sizing: border-box;
   position: relative;
+  padding: 0 10px;
+}
+.user-who-commit-all-item img {
+  border: 7px solid #104b4b;
+  border-radius: 50%;
 }
 .user-who-commit-all-item:first-of-type {
   bottom: 10px;
@@ -590,6 +593,6 @@ footer p {
   display: none;
   text-align: center;
 }
-.spiner {
+.spinner {
   height: 65px;
 }

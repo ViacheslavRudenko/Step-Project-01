@@ -20,7 +20,7 @@ serviceTitle.addEventListener("click", (e) => {
 const workTitle = document.querySelector(".company-work-title");
 const workImg = document.querySelectorAll(".company-work-img-item");
 const workTitleItem = document.querySelectorAll(".company-work-title div");
-const spinerWorks = document.querySelector(".company-work .spiner");
+const spinnerWorks = document.querySelector(".company-work .spinner");
 let maxLengthWorkImg = 11;
 
 function maxLengthWork() {
@@ -47,33 +47,32 @@ workTitle.addEventListener("click", (e) => {
 
 const btnLoadImg = document.querySelector(".company-work .btn-load");
 btnLoadImg.addEventListener("click", (e) => {
-  spiner(btnLoadImg, spinerWorks);
+  spinner(btnLoadImg, spinnerWorks);
   setTimeout(loadPhotoWork, 2000);
 });
 
 function loadPhotoWork() {
   maxLengthWorkImg += 12;
-  spiner(btnLoadImg, spinerWorks);
+  spinner(btnLoadImg, spinnerWorks);
   maxLengthWork();
   maxLengthPhoto(workImg, maxLengthWorkImg, btnLoadImg);
 }
-
 /*Comments*/
-const peopleWhoComm = document.querySelectorAll(".users-who-commit img");
-let widthPhoto = document.querySelector(".users-who-commit").offsetWidth;
-
+const peopleWhoComm = document.querySelectorAll(".people-comm div");
+let widthPhoto = document.querySelector(".people-comm").offsetWidth;
 let position = 0;
 let operationNum = 0;
-function peoplePhoto() {
+
+function peopleSay() {
   for (i = 0; i < peopleWhoComm.length; i++) {
     peopleWhoComm[i].style.cssText = `left: ${position}px; transition:1s`;
     position += widthPhoto;
   }
 }
-peoplePhoto();
+peopleSay();
 
-const nextPhoto = document.querySelector(".next-img");
-nextPhoto.addEventListener("click", (e) => {
+const nextComm = document.querySelector(".next-img");
+nextComm.addEventListener("click", (e) => {
   if (peopleWhoComm.length - 1 > operationNum) {
     operationNum++;
     position -= widthPhoto * (peopleWhoComm.length + 1);
@@ -81,12 +80,11 @@ nextPhoto.addEventListener("click", (e) => {
     operationNum = 0;
     position = 0;
   }
-  peoplePhoto();
+  peopleSay();
   animatedPhoto();
-  animatedCommentContent();
 });
-const previousPhoto = document.querySelector(".prevous-img");
-previousPhoto.addEventListener("click", (e) => {
+const previousComm = document.querySelector(".prevous-img");
+previousComm.addEventListener("click", (e) => {
   if (operationNum > 0) {
     operationNum--;
     position -= widthPhoto * (peopleWhoComm.length - 1);
@@ -94,9 +92,8 @@ previousPhoto.addEventListener("click", (e) => {
     operationNum = 3;
     position = -widthPhoto * (peopleWhoComm.length - 1);
   }
-  peoplePhoto();
+  peopleSay();
   animatedPhoto();
-  animatedCommentContent();
 });
 const smallPeoplePhoto = document.querySelectorAll(".user-who-commit-all-item");
 function animatedPhoto() {
@@ -108,13 +105,14 @@ function animatedPhoto() {
   ].style.cssText = `bottom: 10px;   transition: 1s;`;
 }
 
-const peopleComm = document.querySelectorAll(".people-comm");
-function animatedCommentContent() {
-  for (i = 0; i < peopleWhoComm.length; i++) {
-    peopleComm[i].style.display = `none`;
-  }
-  peopleComm[operationNum].style.cssText = `display: block`;
-}
+const smallPhoto = document.querySelector(".user-who-commit-all-img");
+smallPhoto.addEventListener("click", (e) => {
+  let photoIndex = e.target.alt.slice(-1);
+  operationNum = photoIndex;
+  position = widthPhoto * (photoIndex * -1);
+  peopleSay();
+  animatedPhoto();
+});
 
 /*Gallery Masonry*/
 function masonryFun() {
@@ -129,7 +127,7 @@ window.onload = () => {
 };
 
 const galleryItem = document.querySelectorAll(".gallery-box > div");
-const spinerGallery = document.querySelector(".gallery .spiner");
+const spinnerGallery = document.querySelector(".gallery .spinner");
 const btnLoadImgGallery = document.querySelector(".gallery .btn-load");
 let maxLengthGalleryImg = 8;
 
@@ -146,20 +144,20 @@ function maxLengthGallery() {
 maxLengthGallery();
 
 function loadPhoto(photo, length) {
-  spiner(btnLoadImgGallery, spinerGallery);
+  spinner(btnLoadImgGallery, spinnerGallery);
   maxLengthGalleryImg += 8;
   maxLengthGallery();
   maxLengthPhoto(galleryItem, maxLengthGalleryImg, btnLoadImgGallery);
 }
 
 btnLoadImgGallery.addEventListener("click", (e) => {
-  spiner(btnLoadImgGallery, spinerGallery);
+  spinner(btnLoadImgGallery, spinnerGallery);
   setTimeout(loadPhoto, 2000);
 });
 
-function spiner(btn, spiner) {
+function spinner(btn, spinner) {
   btn.classList.toggle("display-none");
-  spiner.classList.toggle("display-none");
+  spinner.classList.toggle("display-none");
 }
 
 function maxLengthPhoto(photo, length, btn) {
